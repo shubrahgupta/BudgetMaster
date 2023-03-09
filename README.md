@@ -21,3 +21,7 @@ Future ideas:
 2. Add telegram usage so that user can use speech-to-text feature of Google OS.
 3. Also we can provide a feedback to check if we are getting correct categorization in the model as the data initially is limited.
   
+
+
+Resources:
+* Chatbot making: https://www.section.io/engineering-education/creating-chatbot-using-natural-language-processing-in-python/
