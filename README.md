@@ -17,6 +17,11 @@ Key tasks:
 - [ ] Connect input box with google sheet and update the sheet for every input [Task till here is absolutely necessary for the project]
 - [ ] How to fetch data from google sheets to the webapp 
 
+**12/03/2023** <br>
+Dictionary with components tag, log, amount, response will be returned through POST request. <br>
+Implemented regex to parse string and return int, added exception handling to prevent IndexError<br>
+
+
 **11/03/2023** <br>
 Using https://www.kdnuggets.com/2021/04/deploy-machine-learning-models-to-web.html as reference.<br>
 We will use FAST API, Uvicorn(a server) and Flask in Python. <br>
