@@ -144,7 +144,13 @@ def getRes(firstlist, fJson):
     if i["tag"] == tag:
       ourResult = random.choice(i["responses"])
       break
-  return ourResult
+  arr = ["log", "response", "tag", "amount"]
+  dic = {key: None for key in arr}
+  dic["response"] = ourResult
+  dic["tag"] = tag
+  # arr.append(ourResult)
+  # arr.append(tag)
+  return dic
 
 
 # flag = True
