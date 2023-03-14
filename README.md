@@ -17,6 +17,9 @@ Key tasks:
 - [ ] Connect input box with google sheet and update the sheet for every input [Task till here is absolutely necessary for the project]
 - [ ] How to fetch data from google sheets to the webapp 
 
+**14/03/2023** <br>
+Created a decent UI with a template, need to change the rect to look as a terminal and the layover text will appear using some effect(search more on this)
+
 **12/03/2023** <br>
 Dictionary with components tag, log, amount, response will be returned through POST request. <br>
 Implemented regex to parse string and return int, added exception handling to prevent IndexError<br>
