@@ -6,16 +6,23 @@ This is supposed to be a webapp which can serve as a financial tracker. <br>
 I will create a chatbot/NLP model which will be trained on basic terms to classify something as "expense/income/receipt/gibberish" <br>
 On the webapp, an input box will be present which can take each line and convert them into some financial statement, <br>
   for e.g. received income --> income <br>
-Then we would parse the statement for integer value and accordingly add in a google sheet which would be our financial dashboard <br>
-We would later display important info from that excel sheet to the webapp. <br>
+Then we would parse the statement for integer value and accordingly make a financial dashboard <br>
 
 Key tasks: 
 - [x] Train a chatbot model 
 - [x] Make a webapp
 - [x] Deploy chatbot model to connect with input box
-- [ ] Create a decent UI
-- [ ] Connect input box with google sheet and update the sheet for every input [Task till here is absolutely necessary for the project]
-- [ ] How to fetch data from google sheets to the webapp 
+- [x] Create a decent UI
+
+
+
+![budgetMaster_in_action](https://github.com/shubrahgupta/BudgetMaster/assets/50666757/e0da90ea-1779-43ef-a33c-0aa884b5a321)
+
+**21/08/2023** <br>
+1. On clicking the button after entering text in the box , post request was made to the api but new page was loaded having json response, fixed it by using AJAX, stopped the default event, and later triggered it manually.
+
+2. The black responseArea where the text needed to be published to, I brought the json response there, and then brought a table instead, with one entry filled. To my delight entering the text in the box and clicking the button everytime inserted a new record in the table.
+
 
 **14/03/2023** <br>
 Created a decent UI with a template, need to change the rect to look as a terminal and the layover text will appear using some effect(search more on this)
