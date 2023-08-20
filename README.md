@@ -27,6 +27,8 @@ The server runs on the command
 uvicorn app:app --reload
 ```
 
+<br>
+Workflow:<br><br>
 
 ![BudgetMaster drawio](https://github.com/shubrahgupta/BudgetMaster/assets/50666757/b3ff317f-2869-4cf1-81c3-60c8603849ae)
 
