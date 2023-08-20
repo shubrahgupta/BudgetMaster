@@ -7,8 +7,8 @@ from nltk.stem import WordNetLemmatizer  # It has the ability to lemmatize.
 # A multidimensional array of elements is represented by this symbol.
 import tensorflow as tf
 # Sequential groups a linear stack of layers into a tf.keras.Model
-from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.python.keras import Sequential
+from tensorflow.python.keras.layers import Dense, Dropout
 
 # nltk.download("punkt")  # required package for tokenization
 # nltk.download("wordnet")  # word database
@@ -140,6 +140,7 @@ def Pclass(text, vocab, labels, ourNewModel):
 def getRes(firstlist, fJson):
   tag = firstlist[0]
   listOfIntents = fJson["ourIntents"]
+  ourResult = None
   for i in listOfIntents:
     if i["tag"] == tag:
       ourResult = random.choice(i["responses"])

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entry</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i|Roboto:500" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Dancing Script' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url_for('static', path = 'dist/css/style.css') }}">
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <style>
+        .textbox1 { 
+            width: 440px;
+            height:59px;
+            line-height:30px;
+            text-align: center;
+        }
+        #transactionTable {
+            text-align: left;
+        }
+    </style>
+</head>
+<body class="is-boxed has-animations"style="background: purple">
+    <div class="body-wrap boxed-container" style="background-image: radial-gradient(violet,purple, black)">
+        
+
+        <main>
+            <section class="hero text-center">
+                <div class="container-sm">
+                    <div class="hero-inner">
+                        <h1 class="hero-title h2-mobile mt-0 is-revealing" style="visibility: visible;
+    color: white;">Welcome to Budget Master</h1>
+                        <p class="hero-paragraph is-revealing" style="visibility: visible;
+    color: white;">An AI powered tool which will record your transaction in sentences and categorize them into expenses/income/receipt/gibberish.</p>
+                        <div class="hero-form newsletter-form field field-grouped is-revealing">
+                            <div class="control control-expanded">
+                                <!-- <form method="post" action="/entry" id="usrform">
+                                    <textarea type="input" class="textbox1" name = "input_post" rows="2" cols="40" form="usrform" placeholder="Enter transaction&hellip;"></textarea>
+                                    <input class="submit" type="submit" value="Submit">
+
+                                
+                                </form> -->
+
+                                <form method="post" action="/entry" id="usrform">
+                                    <input class="textbox1" type="text" name="text" placeholder="Enter transaction&hellip;">
+                                    <!-- <input type="submit" /> -->
+                                </form>
+
+                                    
+                            </div>
+                            <div class="control">
+                                <button class="button button-primary button-block button-shadow" form="usrform" type="submit" onclick="submitForm()">Process</button>
+                            </div>
+               
+                        </div>
+
+
+                        <div class="hero-browser">
+                            <div class="hero-browser-inner is-revealing">
+                                <div id ="responseArea" style="background-color: black ; padding: 60px; margin-top: 100px;color: white;">
+                                    <table id="transactionTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Transaction</th>
+                                                <th>Category</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Spent 50 on vacation</td>
+                                                <td>expense</td>
+                                                <td>50</td>
+                                            </tr>
+                                            <!-- Data rows will be inserted here using JavaScript -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+
+                        <!-- <div style="background-color: black ; padding: 60px; margin-top: 100px;color: white;">mahua</div> -->
+                    </div>
+                </div>
+            </section>
+
+
+
+        </main>
+
+
+    <script src="static/dist/js/main.min.js"></script>
+    <script>
+        // function submitForm() {
+        //         var formElement = document.getElementById('usrform');
+        //     //     .addEventListener("submit", function (event) {
+        //     //     event.preventDefault(); // Prevents the default form submission
+        //     //     // Your AJAX request code here
+        //     // });
+        //         var data = new FormData(formElement);
+        //         fetch('/entry', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Accept': 'application/json',
+        //             },
+        //             body: data,
+        //         })
+        //         .then(resp => resp.json())  // or, resp.json(), etc.
+        //         .then(data => {
+        //             const result = data;
+        //             console.log(data);
+        //             document.getElementById("responseArea").innerHTML = JSON.stringify(result);
+        //         })
+        //         .catch(error => {
+        //             console.error(error);
+        //         });
+        //     }
+
+        function submitForm(event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+
+                var formElement = document.getElementById('usrform');
+                var data = new FormData(formElement);
+
+                fetch('/entry', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    body: data,
+                })
+                    .then(resp => resp.json())
+                    .then(data => {
+                        const log = data.log;
+                        // const response = data.response;
+                        const tag = data.tag;
+                        const amount = data.amount;
+
+                        const tableBody = document.querySelector('#transactionTable tbody');
+                        //sample data
+                        // const row1 = document.createElement('tr');
+
+                        // const transactionCell1 = document.createElement('td');
+                        // transactionCell1.textContent = "Spent 50 on vacation";
+
+                        // const categoryCell1 = document.createElement('td');
+                        // categoryCell1.textContent = "expense";
+
+                        // const amountCell1 = document.createElement('td');
+                        // amountCell1.textContent = "50";
+
+                        // row1.appendChild(transactionCell1);
+                        // row1.appendChild(categoryCell1);
+                        // row1.appendChild(amountCell1);
+
+                        // tableBody.innerHTML = ''; // Clear the table body
+                        ;
+                        // tableBody.appendChild(row1);
+                        //new data
+                        const row = document.createElement('tr');
+
+                        const transactionCell = document.createElement('td');
+                        transactionCell.textContent = log;
+
+                        const categoryCell = document.createElement('td');
+                        categoryCell.textContent = tag;
+
+                        const amountCell = document.createElement('td');
+                        amountCell.textContent = amount;
+
+                        row.appendChild(transactionCell);
+                        row.appendChild(categoryCell);
+                        row.appendChild(amountCell);
+
+                        // tableBody.innerHTML = ''; // Clear the table body
+                        tableBody.appendChild(row);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
+            // Find the "Process" button and attach a click event listener
+            var processButton = document.querySelector('.button-primary');
+            processButton.addEventListener('click', submitForm);
+    </script>
+</body>
+</html>
