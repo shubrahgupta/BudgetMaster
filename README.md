@@ -15,7 +15,7 @@ Key tasks:
 - [x] Make a webapp
 - [x] Deploy chatbot model to connect with input box
 - [x] Create a decent UI
-
+- [x] Connect telegram chat bot to send and receive API calls. 
 
 
 ![budgetMaster_in_action](https://github.com/shubrahgupta/BudgetMaster/assets/50666757/e0da90ea-1779-43ef-a33c-0aa884b5a321)
@@ -30,7 +30,13 @@ uvicorn app:app --reload
 <br>
 Workflow:<br><br>
 
-![BudgetMaster drawio](https://github.com/shubrahgupta/BudgetMaster/assets/50666757/b3ff317f-2869-4cf1-81c3-60c8603849ae)
+
+![BudgetMaster2_0 drawio](https://github.com/shubrahgupta/BudgetMaster/assets/50666757/179c6bed-ff62-4da1-90d0-06eee838a57b)
+
+
+**27/08/2023** <br>
+1. Added functionality to send transactional statements from the telegram app and receive categorization, and amount as a response.
+
 
 **21/08/2023** <br>
 1. On clicking the button after entering text in the box, a post request was made to the API but a new page was loaded with a JSON response (undesirable, I wanted to get the response without reloading), fixed it by using AJAX, stopped the default button click event, and later triggered it manually.
