@@ -1,0 +1,107 @@
+For reference: https://chat.openai.com/share/8a7ddd70-094b-4ced-8e2d-7829652c1cdf can be used or see the below steps for elaborate step-to-step guide on accessing docker container from outside the network.
+
+1. Configure Firewall and Network
+UFW (Uncomplicated Firewall) Configuration:
+
+Ubuntu often uses UFW as its default firewall management tool. You may need to configure UFW to allow traffic on the specified port.
+
+a)Check UFW Status:
+  Start by checking the status of UFW to see if it's enabled:
+ 
+	sudo ufw status
+
+b) Allow Incoming Traffic:
+
+If UFW is active and you haven't configured any rules yet, it may be blocking incoming traffic. You can allow traffic on the required port using:
+
+
+	sudo ufw allow 8000/tcp
+
+#Replace 8000 with the port you want to expose.
+
+c) Enable UFW:
+
+If UFW is not enabled, you can enable it with:
+
+    sudo ufw enable
+
+2) Docker Network Configuration:
+
+    Bridge Network: Docker typically uses bridge networking by default. Ensure that Docker is configured to use bridge networking and that containers are reachable from the host.
+
+    Inspect Docker Network: You can inspect the Docker network to ensure containers are listening on the expected ports and are reachable from the host:
+
+    docker network inspect bridge
+
+
+
+4. External IP and DNS
+External IP Address:
+
+a) If your host machine has an external IP address, you need to ensure that incoming traffic is directed to your host machine.
+
+    Public IP Address:
+
+	ifconfig (use net-tools if prompted)
+
+	This will return your host machine's public IP address.
+
+b) Router Configuration:
+
+To configure port forwarding on your Airtel Xstream Fiber router, you'll need to access the router's admin panel and set up a port forwarding rule to forward incoming traffic on the specified port to your host machine's internal IP address. Here are the general steps to do this:
+
+    Find Your Router's IP Address: You need to know the IP address of your router to access its admin panel. This is typically something like 192.168.1.1 or 192.168.0.1. You can usually find this information on a sticker on the router itself or in the documentation provided by Airtel.
+
+    Access Router's Admin Panel:
+
+    a. Open a web browser on a device connected to your Airtel Xstream Fiber network.
+
+    b. Enter the IP address of your router in the address bar of the web browser and press Enter. This should take you to the login page for the router's admin panel.
+    In my case, it is https://192.168.1.1/login.html.
+
+    c. Log in to the admin panel using the username and password. This information is often provided on the router itself or in the documentation.
+
+    Navigate to Port Forwarding Section:
+
+    Router interfaces may differ, but look for a section related to "Port Forwarding," "Virtual Server," or "NAT." This is where you'll configure port forwarding rules.
+
+    Add Port Forwarding Rule:
+
+    a. In the port forwarding section, you'll need to add a new port forwarding rule.
+
+    b. Enter a name for the rule (e.g., "Docker Port Forwarding").
+
+    c. Specify the external port (the port you want to expose to the internet) and the internal port (the port your Docker container is listening on). For example, if your Docker container is listening on port 8000, you would enter 8000 for both internal and external ports.
+
+    d. Enter the internal IP address of your host machine. You can find this by running ifconfig or ipconfig command in the terminal or command prompt and looking for the IP address associated with your network interface (e.g., eth0, en0, or wlan0).
+
+    e. Choose the appropriate protocol (TCP, UDP, or both) for the port forwarding rule.
+
+    Save and Apply Changes:
+
+    After configuring the port forwarding rule, save the changes and apply them. This may involve clicking a "Save" or "Apply" button in the router's admin panel.
+
+c) Test Port Forwarding:
+
+Testing port forwarding ensures that the configuration you've set up on your router is working as expected and that external traffic can reach your Docker container. Here's how you can test port forwarding:
+
+    a. Access Your Docker Container Internally:
+
+    Before testing externally, ensure that your Docker container is running and accessible internally on your local network. You can test this by accessing the service running inside the Docker container from another device on the same network.(Worked on my mobile connected to the same wifi, and used the ip address which I got from ifconfig command)
+
+    For example, if your Docker container is running a web server listening on port 8000, you can open a web browser on another device and navigate to http://<docker_host_internal_ip>:8000. Replace <docker_host_internal_ip> with the internal IP address of your host machine.
+
+    b. Access Your Docker Container Externally:
+
+    To test port forwarding externally, you'll need to access your Docker container from outside your network, such as from a device connected to a different network or using a cellular connection.
+
+	    a1. Find the public IP address of your network. You can do this by searching "What is my IP address" on a search engine from a device outside your network.
+
+	    b1. Use the public IP address along with the external port you specified in the port forwarding rule to access your Docker container. For example, if your public IP address is x.x.x.x and you forwarded port 8080 to your Docker container's port 8080, you would navigate to http://x.x.x.x:8080 in a web browser.
+
+    Test Connectivity:
+
+    Once you've accessed your Docker container externally, verify that the service running inside the container is accessible and behaves as expected. For example, if your Docker container is running a web server, make sure you can see the web page or perform actions as intended.
+
+
+
