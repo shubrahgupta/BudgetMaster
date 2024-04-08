@@ -13,3 +13,30 @@ docker run -d -p 8000:8000 my-fastapi-app
 #This command runs the container in detached mode (-d), mapping port 8000 from the container to port 8000 on the host (-p 8000:8000). Adjust the port mapping as needed.
 
 #Access the FastAPI application: Once the container is running, you should be able to access your FastAPI application by visiting http://localhost:8000 in your web browser.
+
+3. if you want to rerun the container i.e. the container is already created, dont use this again: docker run -d -p 8000:8000 my-fastapi-app
+
+	Follow this: 
+	a) First, you need to find the container ID or name of your existing container. You can use the following command to list all the containers:
+
+		sudo docker ps -a
+
+    	Identify your container in the list. You'll find its ID or name.
+
+    	b) Instead of running a new container, start the existing one using its ID or name. Replace CONTAINER_ID_OR_NAME with your actual container ID or name:
+
+
+		sudo docker start CONTAINER_ID_OR_NAME
+
+	This command will start the existing container without creating a new one. You can now access your FastAPI app running in the Docker container.
+
+	c) If you want to stop the container later, you can use:
+
+
+		sudo docker stop CONTAINER_ID_OR_NAME
+
+	And if you wish to remove the container completely, you can use:
+
+		sudo docker rm CONTAINER_ID_OR_NAME
+	
+	#Replace CONTAINER_ID_OR_NAME with the actual ID or name of your container.
