@@ -1,0 +1,15 @@
+1. After creating a dockerfile, build the Docker image: Open a terminal, navigate to your project directory, and run the following command to build your Docker image:
+
+
+docker build -t my-fastapi-app .
+
+#Replace my-fastapi-app with your desired image name.
+
+2. Run the Docker container: After the image is built successfully, you can run a container based on that image:
+
+
+docker run -d -p 8000:8000 my-fastapi-app
+
+#This command runs the container in detached mode (-d), mapping port 8000 from the container to port 8000 on the host (-p 8000:8000). Adjust the port mapping as needed.
+
+#Access the FastAPI application: Once the container is running, you should be able to access your FastAPI application by visiting http://localhost:8000 in your web browser.
