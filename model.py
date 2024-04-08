@@ -10,9 +10,9 @@ import tensorflow as tf
 from tensorflow.python.keras import Sequential
 from tensorflow.python.keras.layers import Dense, Dropout
 
-# nltk.download("punkt")  # required package for tokenization
-# nltk.download("wordnet")  # word database
-# nltk.download('omw-1.4')
+nltk.download("punkt")  # required package for tokenization
+nltk.download("wordnet")  # word database
+nltk.download('omw-1.4')
 
 
 ourData = {"ourIntents": [
